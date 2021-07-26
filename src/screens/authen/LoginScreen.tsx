@@ -1,9 +1,16 @@
 import React from 'react';
 import {Text, View, Button} from 'react-native';
-import {useAuthorization} from '../../hooks';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {useAuthorization, useTheme, useData} from '../../hooks';
 
 const LoginScreen = () => {
   const {login} = useAuthorization();
+  // const {colors, sizes, gradients, fonts} = useTheme();
+  // const {theme} = useData();
+
+  React.useEffect(() => {
+    // console.log(JSON.stringify(fonts));
+  });
 
   return (
     // eslint-disable-next-line react-native/no-inline-styles

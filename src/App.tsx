@@ -1,9 +1,8 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import AppContainer from './navigation';
+import AppNavigation from './navigation';
 import {AppState} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {AuthenticationProvider, TranslationProvider} from './hooks';
+import {DataProvider} from './hooks';
 // import CodePush from 'react-native-code-push';
 
 export const App = () => {
@@ -24,13 +23,9 @@ export const App = () => {
   };
 
   return (
-    <TranslationProvider>
-      <AuthenticationProvider>
-        <SafeAreaProvider>
-          <AppContainer />
-        </SafeAreaProvider>
-      </AuthenticationProvider>
-    </TranslationProvider>
+    <DataProvider>
+      <AppNavigation />
+    </DataProvider>
   );
 };
 

@@ -1,61 +1,52 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {Platform} from 'react-native';
-import {useAuthorization} from '../hooks';
-import {NavigationContainer} from '@react-navigation/native';
+import AppRootNavigator from './AppRootNavigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
-  createStackNavigator,
-  // CardStyleInterpolators,
-} from '@react-navigation/stack';
-import {SplashScreen} from '../screens';
-import AuthNavigator from './AuthNavigator';
-import MainNavigator from './MainNavigator';
+  AuthenticationProvider,
+  TranslationProvider,
+  useData,
+  ThemeProvider,
+} from '../hooks';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+// import CodePush from 'react-native-code-push';
 
-const RootStack = createStackNavigator();
-const AppRootStack = createStackNavigator();
-// const AppMainStack = createStackNavigator();
+export const AppNavigation = () => {
+  const {isDark, theme, setTheme} = useData();
 
-const AppNavigator = () => {
-  const {isLogin} = useAuthorization();
+  const navigationTheme = {
+    ...DefaultTheme,
+    dark: isDark,
+    colors: {
+      ...DefaultTheme.colors,
+      border: 'rgba(0,0,0,0)',
+      text: String(theme.colors.text),
+      card: String(theme.colors.card),
+      primary: String(theme.colors.primary),
+      notification: String(theme.colors.primary),
+      background: String(theme.colors.background),
+    },
+  };
 
   return (
-    <RootStack.Navigator
-      headerMode="none"
-      screenOptions={
-        {
-          // cardStyle: {backgroundColor: 'black'},
-          // ...AuthTransition,
-          // cardStyleInterpolator: CardStyleInterpolators.forNoAnimation,
-        }
-      }>
-      {isLogin === 'signOut' ? (
-        <RootStack.Screen name="AuthNavigator" component={AuthNavigator} />
-      ) : (
-        <RootStack.Screen name="MainNavigator" component={MainNavigator} />
-      )}
-    </RootStack.Navigator>
+    <TranslationProvider>
+      <ThemeProvider theme={theme} setTheme={setTheme}>
+        <AuthenticationProvider>
+          <SafeAreaProvider>
+            <NavigationContainer theme={navigationTheme}>
+              <AppRootNavigator />
+            </NavigationContainer>
+          </SafeAreaProvider>
+        </AuthenticationProvider>
+      </ThemeProvider>
+    </TranslationProvider>
   );
 };
 
-const AppRootNavigator = () => {
-  return (
-    <AppRootStack.Navigator
-      screenOptions={{
-        headerShown: false,
-        // cardStyleInterpolator: fadeConfig,
-        // ...AnimationTranslateX
-      }}>
-      <AppRootStack.Screen name="SplashScreen" component={SplashScreen} />
-      <AppRootStack.Screen name="AuthNavigator" component={AppNavigator} />
-      {/*<AppRootStack.Screen name="MainNavigator" component={MainNavigator} />*/}
-    </AppRootStack.Navigator>
-  );
-};
+// let codePushOptions = {
+//   checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
+//   installMode: CodePush.InstallMode.ON_NEXT_RESUME,
+// };
 
-const AppContainer = () => {
-  return (
-    <NavigationContainer>
-      {Platform.select({ios: AppRootNavigator(), android: AppRootNavigator()})}
-    </NavigationContainer>
-  );
-};
-export default AppContainer;
+// export default CodePush(codePushOptions)(App);
+export default AppNavigation;
