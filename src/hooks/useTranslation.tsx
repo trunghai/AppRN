@@ -1,6 +1,6 @@
 // @ts-ignore
 import i18n from 'i18n-js';
-import {setDataAsyncStorage, getDataAsyncStorage} from '../utils/AsyncStorage';
+import {setDataAsyncStorage, getDataAsyncStorage} from '../utils/storage';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import translations from '../constants/translations/';
@@ -13,7 +13,7 @@ export const TranslationProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [locale, setLocale] = useState('en');
+  const [locale, setLocale] = useState('vi');
 
   // Set the locale once at the beginning of your app.
   i18n.locale = locale;

@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {light} from '../constants';
 import {IUseData, ITheme} from '../constants/types';
-import {getDataAsyncStorage, setDataAsyncStorage} from '../utils/AsyncStorage';
+import {getDataAsyncStorage, setDataAsyncStorage} from '../utils/storage';
 
 export const DataContext = React.createContext({});
 
@@ -16,7 +16,7 @@ export const DataProvider = ({children}: {children: React.ReactNode}) => {
 
     if (isDarkJSON !== null && isDarkJSON === 'isDark') {
       // set isDark / compare if has updated
-      setIsDark(true);
+      setIsDark(JSON.parse(isDarkJSON));
     }
   }, [setIsDark]);
 
@@ -26,7 +26,7 @@ export const DataProvider = ({children}: {children: React.ReactNode}) => {
       // set isDark / compare if has updated
       setIsDark(payload);
       // save preferance to storage
-      setDataAsyncStorage('isDark', '');
+      setDataAsyncStorage('isDark', JSON.stringify(payload));
     },
     [setIsDark],
   );

@@ -1,12 +1,13 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {
   setDataAsyncStorage,
-  removeDataAsyncStorageItem, getDataAsyncStorage,
-} from '../utils/AsyncStorage';
+  removeDataAsyncStorageItem,
+  getDataAsyncStorage,
+} from '../utils/storage';
 import {
   ASYNC_STORAGE_KEY_IS_LOGIN,
   ASYNC_STORAGE_KEY_USER_INFO,
-} from '../constants/AppConstant';
+} from '../constants/common';
 import {IAuthorization} from '../constants/types';
 
 export const AuthenticationContext = React.createContext({});

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 // @ts-ignore
 import CryptoJS from 'crypto-js';
-import {SECRET_KEY} from '../constants/AppConstant';
+import {SECRET_KEY} from '../constants/common';
 
 let isSuccess = 'Success';
 let isFailure = 'Failure';

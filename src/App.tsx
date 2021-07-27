@@ -1,12 +1,25 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import AppNavigation from './navigation';
-import {AppState} from 'react-native';
+import {AppState, AppStateStatus} from 'react-native';
 import {DataProvider} from './hooks';
 // import CodePush from 'react-native-code-push';
 
 export const App = () => {
-  const [appState, setAppState] = useState(AppState.currentState);
+  const [appState, setAppState] = useState<AppStateStatus>(
+    AppState.currentState,
+  );
+
+  const _handleAppStateChange = useCallback(
+    (nextAppState: AppStateStatus) => {
+      if (appState.match(/inactive|background/) && nextAppState === 'active') {
+        // console.log('App has come to the foreground!');
+      }
+      setAppState(nextAppState);
+      // console.log(`appState: ${appState} nextAppState: ${nextAppState}`);
+    },
+    [appState, setAppState],
+  );
 
   React.useEffect(() => {
     AppState.addEventListener('change', _handleAppStateChange);
@@ -14,13 +27,6 @@ export const App = () => {
       AppState.removeEventListener('change', _handleAppStateChange);
     };
   });
-
-  const _handleAppStateChange = (nextAppState: any) => {
-    if (appState.match(/inactive|background/) && nextAppState === 'active') {
-      // console.log('App has come to the foreground!');
-    }
-    setAppState(nextAppState);
-  };
 
   return (
     <DataProvider>
