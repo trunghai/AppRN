@@ -3,7 +3,7 @@ import {Platform, Pressable} from 'react-native';
 
 // import * as Haptics from 'expo-haptics';
 
-import {useTheme} from '../hooks/';
+import useTheme from '../hooks/useTheme';
 import Block from '../components/Block';
 import Image from '../components/Image';
 import {ICheckboxProps} from '../constants/types';

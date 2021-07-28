@@ -159,6 +159,7 @@ const Input = ({
         {success && assets.check && (
           <Image
             source={assets.check}
+            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               width: 12,
               height: 9,

@@ -195,6 +195,7 @@ const Typography = (props: ITextProps) => {
           colors={gradient}
           end={end}
           start={start}
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{flex: 1, height: gradientHeight, flexWrap: 'wrap'}}
         />
       </MaskedView>

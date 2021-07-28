@@ -7,7 +7,7 @@ import {
   Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Ionicons} from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import useTheme from '../hooks/useTheme';
 import {IButtonProps} from '../constants/types';

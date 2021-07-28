@@ -11,7 +11,7 @@ import {BlurView} from '@react-native-community/blur';
 import LinearGradient from 'react-native-linear-gradient';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {useTheme} from '../hooks';
+import useTheme from '../hooks/useTheme';
 import {IBlockProps} from '../constants/types';
 
 const Block = (props: IBlockProps) => {
