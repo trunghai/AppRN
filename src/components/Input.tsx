@@ -144,8 +144,8 @@ const Input = ({
           style={inputStyles}
           editable={!disabled}
           placeholderTextColor={inputColor}
-          onFocus={(event) => handleFocus(event, true)}
-          onBlur={(event) => handleFocus(event, false)}
+          onFocus={event => handleFocus(event, true)}
+          onBlur={event => handleFocus(event, false)}
         />
         {danger && assets.warning && (
           <Image

@@ -8,10 +8,10 @@ import {
   ViewStyle,
 } from 'react-native';
 import {BlurView} from '@react-native-community/blur';
-import {LinearGradient} from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import useTheme from '../hooks/useTheme';
+import {useTheme} from '../hooks';
 import {IBlockProps} from '../constants/types';
 
 const Block = (props: IBlockProps) => {
@@ -201,8 +201,8 @@ const Block = (props: IBlockProps) => {
         {...blockID}
         colors={gradient}
         style={blockStyles}
-        end={end || [1, 0]}
-        start={start || [0, 0]}
+        end={end}
+        start={start}
         {...rest}>
         {children}
       </LinearGradient>
