@@ -98,7 +98,7 @@ const Input = ({
     {
       minHeight: sizes.inputHeight,
       borderRadius: sizes.inputRadius,
-      borderWidth: isFocused ? 2 : sizes.inputBorder,
+      borderWidth: isFocused ? 1 : sizes.inputBorder,
       borderColor: isFocused ? colors.focus : inputColor,
     },
   ]) as ViewStyle;

@@ -1,28 +1,44 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
+import {Platform} from 'react-native';
+import {Text, Block, Button, Input} from '../../components';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {useAuthorization, useTheme, useData} from '../../hooks';
+import {useAuthorization, useTheme, useTranslation} from '../../hooks';
+
+const isAndroid = Platform.OS === 'android';
 
 const LoginScreen = () => {
-  const {login} = useAuthorization();
-  // const {colors, sizes, gradients, fonts} = useTheme();
-  // const {theme} = useData();
+  // const {login} = useAuthorization();
+  const {sizes} = useTheme();
+  const {t} = useTranslation();
 
   React.useEffect(() => {
     // console.log(JSON.stringify(fonts));
   });
 
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>{'Login Screen'}</Text>
-      <Button
-        title={'Đăng nhập'}
-        onPress={() => {
-          login(JSON.stringify({username: '123456'}));
-        }}
+    <Block flex={1} justify={'center'}>
+      <Input
+        autoCapitalize="none"
+        marginBottom={sizes.m}
+        marginHorizontal={sizes.sm}
+        label={t('common.name')}
+        placeholder={t('common.namePlaceholder')}
+        // success={Boolean(registration.name && isValid.name)}
+        // danger={Boolean(registration.name && !isValid.name)}
+        onChangeText={() => {}}
       />
-    </View>
+      <Button
+        primary
+        outlined
+        shadow={!isAndroid}
+        marginVertical={sizes.s}
+        marginHorizontal={sizes.sm}
+        onPress={() => {}}>
+        <Text bold primary transform="uppercase">
+          {t('common.signup')}
+        </Text>
+      </Button>
+    </Block>
   );
 };
 
