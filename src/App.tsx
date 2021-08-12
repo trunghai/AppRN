@@ -2,13 +2,16 @@ import 'react-native-gesture-handler';
 import React, {useState, useCallback} from 'react';
 import AppNavigation from './navigation';
 import {AppState, AppStateStatus} from 'react-native';
-import {DataProvider} from './hooks';
+import {DataProvider, useTheme} from './hooks';
 // import CodePush from 'react-native-code-push';
 
 export const App = () => {
   const [appState, setAppState] = useState<AppStateStatus>(
     AppState.currentState,
   );
+  const {colors} = useTheme();
+
+  console.log(JSON.stringify(colors));
 
   const _handleAppStateChange = useCallback(
     (nextAppState: AppStateStatus) => {
